@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  customerapi:
+    container_name : customer.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_Host=customerdb
+      - DB_Name=dms_customer
+      - DB_Password=a@A123456
+    ports:
+      - "5106:80"
+    depends_on:
+      - customerdb
+  customerdb:
+    container_name: customer.db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=a@A123456
+    volumes:
+      - mssql2022_1:/var/opt/mssql
+    ports:
+      - 1401:1433
+    restart: always
+
+volumes:
+  mssql2022_1:
+       

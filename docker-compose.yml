@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  customerapi:
+    image: ${DOCKER_REGISTRY-}customerwebapi
+    build:
+      context: .
+      dockerfile: src/CustomerWebApi/Dockerfile
+  customerdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
