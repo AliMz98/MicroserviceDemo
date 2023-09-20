@@ -8,3 +8,12 @@ services:
       dockerfile: src/CustomerWebApi/Dockerfile
   customerdb:
     image: mcr.microsoft.com/mssql/server:2022-latest
+
+  productwebapi:
+    image: ${DOCKER_REGISTRY-}productwebapi
+    build:
+      context: .
+      dockerfile: src/ProductWebApi/Dockerfile
+  productdb:
+    image: mysql:latest
+

@@ -23,6 +23,30 @@ services:
       - 1401:1433
     restart: always
 
+  productwebapi:
+    container_name: product.api
+    depends_on:
+      - productdb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_Host=productdb
+      - DB_Name=dms_product
+      - DB_Password=b@B123456
+      - DB_Port=3306
+    ports:
+      - 5158:80
+  productdb:
+    container_name: product.db    
+    environment: 
+      - MYSQL_ROOT_PASSWORD=b@B123456
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
 volumes:
   mssql2022_1:
+  mysql_data:
        
+
